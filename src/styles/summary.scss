@@ -1,0 +1,149 @@
+.summary {
+  background-color: yellow;
+  width: 735px;
+  height: 10px;
+
+  .spinner {
+    width: fit-content;
+    height: fit-content;
+    display: grid;
+    grid-template-areas: "stack";
+    place-items: center;
+    align-content: center;
+    transition: transform 1s;
+    outline: 1px solid var(--blue);
+    animation: rotate calc(3 * var(--duration)) infinite;
+    transition: opacity var(--duration);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+
+    &.off {
+      opacity: 0;
+    }
+
+    .circle {
+      grid-area: stack;
+      background: var(--blue);
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+
+      &:first-child {
+        transform: translate(0, -333%);
+      }
+
+      &:nth-child(2) {
+        transform: rotate(120deg) translate(0, -333%);
+      }
+
+      &:last-child {
+        transform: rotate(240deg) translate(0, -333%);
+      }
+    }
+  }
+
+  .result {
+    &.great {
+      background: var(--gradient-great);
+
+      .fs-h3 {
+        color: var(--light-blue);
+      }
+
+      .fs-h2 {
+        color: white;
+      }
+
+      .fs-body-1 {
+        color: var(--light-blue);
+      }
+
+      .orb {
+        background: var(--bg-gradient-great);
+
+        .fs-h1 {
+          color: white;
+        }
+
+        .fs-body-2 {
+          color: var(--light-blue);
+        }
+      }
+    }
+
+    &.average {
+      background: var(--gradient-average);
+      color: var(--light-black);
+
+      .fs-h3 {
+        // color: var(--light-black);
+        // color: var(--light-green);
+      }
+
+      .fs-h2 {
+        // color: white;
+      }
+
+      .fs-body-1 {
+        // color: var(--light-green);
+      }
+
+      .orb {
+        background: var(--bg-gradient-average);
+
+        .fs-h1 {
+          // color: white;
+        }
+
+        .fs-body-2 {
+          // color: var(--light-green);
+        }
+      }
+    }
+
+    &.bad {
+      background: var(--gradient-bad);
+
+      .orb {
+        background: var(--bg-gradient-bad);
+      }
+    }
+
+    &.terrible {
+      background: var(--gradient-terrible);
+
+      .orb {
+        background: var(--bg-gradient-terrible);
+      }
+    }
+
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    width: 370px;
+    padding: 55px;
+    padding-top: 38px;
+    border-radius: 32px;
+
+    .orb {
+      // outline: 1px solid azure;
+      border-radius: 100%;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      gap: 5px;
+      width: 200px;
+      height: 200px;
+
+      .fs-body-2 {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .summary {
+    position: absolute;
+  }
+}

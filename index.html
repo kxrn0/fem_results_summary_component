@@ -7,15 +7,24 @@
     <title>Vite + TS</title>
   </head>
   <body>
-    <div class="container">
-      <div class="content">
-        <div class="spinner">
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
+    <div class="summary">
+      <div class="spinner animating">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="summary"></div>
+      <div class="result">
+        <p class="fs-h3">Your Result</p>
+        <div class="orb">
+          <p class="fs-h1">00</p>
+          <div class="fs-body-2">of 100</div>
         </div>
+        <p class="value fs-h2"></p>
+        <p class="message fs-body-1"></p>
       </div>
     </div>
+    <button class="byme">click</button>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
