@@ -17,7 +17,8 @@ async function get_summary() {
 
   value.innerText = res.result.value;
   message.innerText = res.result.message;
-  summary.classList.add("visible");
+  summary.classList.add("visible", res.result.value);
+  
 
   result.classList.add(res.result.value);
 

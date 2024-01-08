@@ -1,12 +1,14 @@
 .summary {
-  background-color: white;
+  background-color: transparent;
   width: 735px;
   height: 480px;
   border-radius: 32px;
   position: relative;
-  transition: box-shadow calc(3 * var(--duration));
+  transition: box-shadow calc(3 * var(--duration)),
+    background-color calc(3 * var(--duration));
 
   &.visible {
+    background-color: white;
     box-shadow: 0px 30px 60px 0px rgba(61, 108, 236, 0.15);
 
     .spinner {
@@ -15,25 +17,10 @@
     }
 
     .result {
-      animation: anime calc(3 * var(--duration)) forwards;
+      animation: enter-from-left calc(3 * var(--duration)) forwards;
 
-      @keyframes anime {
-        from {
-          opacity: 0;
-          transform: translate(-50%, -50%);
-          left: 50%;
-        }
-
-        50% {
-          transform: translate(-50%, 0);
-          left: 50%;
-        }
-
-        to {
-          transform: translate(0, 0);
-          opacity: 1;
-          left: 0;
-        }
+      @media screen and (max-width: 740px) {
+        animation-name: enter-from-top;
       }
     }
 
@@ -41,20 +28,149 @@
       .fs-h3,
       .values .category,
       .link {
-        opacity: 1;
-        transform: translate(0);
-        transition: opacity var(--duration), transform var(--duration);
+        animation: score-enter var(--duration) forwards;
       }
 
       .values {
         .category {
-          transition-delay: calc(3 * var(--duration) + var(--index) * 100ms);
+          animation-delay: calc(3 * var(--duration) + var(--index) * 100ms);
         }
       }
 
       .fs-h3,
       .link {
-        transition-delay: calc(3 * var(--duration));
+        animation-delay: calc(3 * var(--duration));
+      }
+    }
+  }
+
+  &.average,
+  &.bad {
+    .result {
+      .fs-h3 {
+        color: var(--very-light-black);
+      }
+
+      .fs-h2 {
+        color: var(--light-black);
+      }
+
+      .fs-body-1 {
+        color: var(--very-light-black);
+      }
+
+      .orb {
+        .fs-h1 {
+          color: var(--light-black);
+        }
+
+        .fs-body-2 {
+          color: var(--light-black);
+        }
+      }
+    }
+  }
+
+  &.great,
+  &.terrible {
+    .result {
+      .fs-h2 {
+        color: white;
+      }
+
+      .orb {
+        .fs-h1 {
+          color: white;
+        }
+      }
+    }
+  }
+
+  &.great {
+    .result {
+      background: var(--gradient-great);
+
+      .fs-h3 {
+        color: var(--light-blue);
+      }
+
+      .fs-body-1 {
+        color: var(--light-blue);
+      }
+
+      .orb {
+        background: var(--bg-gradient-great);
+
+        .fs-body-2 {
+          color: var(--light-blue);
+        }
+      }
+    }
+
+    .scores {
+      .link {
+        --button-bg: var(--blue);
+      }
+    }
+  }
+
+  &.average {
+    .result {
+      background: var(--gradient-average);
+      color: var(--light-black);
+
+      .orb {
+        background: var(--bg-gradient-average);
+      }
+    }
+
+    .scores {
+      .link {
+        --button-bg: var(--green);
+      }
+    }
+  }
+
+  &.bad {
+    .result {
+      background: var(--gradient-bad);
+
+      .orb {
+        background: var(--bg-gradient-bad);
+      }
+    }
+
+    .scores {
+      .link {
+        --button-bg: var(--orange);
+      }
+    }
+  }
+
+  &.terrible {
+    .result {
+      background: var(--gradient-terrible);
+
+      .fs-h3 {
+        color: var(--light-red);
+      }
+
+      .fs-body-1 {
+        color: var(--light-red);
+      }
+
+      .orb {
+        background: var(--bg-gradient-terrible);
+
+        .fs-body-2 {
+          color: var(--light-red);
+        }
+      }
+    }
+
+    .scores {
+      .link {
+        --button-bg: var(--red);
       }
     }
   }
@@ -103,7 +219,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -113,101 +228,6 @@
     padding: 55px;
     padding-top: 38px;
     border-radius: 32px;
-
-    &.average,
-    &.bad {
-      .fs-h3 {
-        color: var(--very-light-black);
-      }
-
-      .fs-h2 {
-        color: var(--light-black);
-      }
-
-      .fs-body-1 {
-        color: var(--very-light-black);
-      }
-
-      .orb {
-        .fs-h1 {
-          color: var(--light-black);
-        }
-
-        .fs-body-2 {
-          color: var(--light-black);
-        }
-      }
-    }
-
-    &.great,
-    &.terrible {
-      .fs-h2 {
-        color: white;
-      }
-
-      .orb {
-        .fs-h1 {
-          color: white;
-        }
-      }
-    }
-
-    &.great {
-      background: var(--gradient-great);
-
-      .fs-h3 {
-        color: var(--light-blue);
-      }
-
-      .fs-body-1 {
-        color: var(--light-blue);
-      }
-
-      .orb {
-        background: var(--bg-gradient-great);
-
-        .fs-body-2 {
-          color: var(--light-blue);
-        }
-      }
-    }
-
-    &.average {
-      background: var(--gradient-average);
-      color: var(--light-black);
-
-      .orb {
-        background: var(--bg-gradient-average);
-      }
-    }
-
-    &.bad {
-      background: var(--gradient-bad);
-
-      .orb {
-        background: var(--bg-gradient-bad);
-      }
-    }
-
-    &.terrible {
-      background: var(--gradient-terrible);
-
-      .fs-h3 {
-        color: var(--light-red);
-      }
-
-      .fs-body-1 {
-        color: var(--light-red);
-      }
-
-      .orb {
-        background: var(--bg-gradient-terrible);
-
-        .fs-body-2 {
-          color: var(--light-red);
-        }
-      }
-    }
 
     .orb {
       border-radius: 100%;
@@ -222,15 +242,39 @@
       .fs-body-2 {
         opacity: 0.5;
       }
+
+      @media screen and (max-width: 740px) {
+        margin-top: 24px;
+        width: 140px;
+        height: 140px;
+      }
     }
 
     .fs-h2 {
       margin-top: 28px;
       text-transform: capitalize;
+
+      @media screen and (max-width: 740px) {
+        margin-top: 24px;
+      }
     }
 
     .fs-body-1 {
       margin-top: 14px;
+
+      @media screen and (max-width: 140px) {
+        margin-top: 8px;
+      }
+    }
+
+    @media screen and (max-width: 740px) {
+      width: 100%;
+      left: 0;
+      transform: translate(0, -50%);
+      height: fit-content;
+      padding: 40px 57px;
+      padding-top: 24px;
+      border-radius: 0px 0px 32px 32px;
     }
   }
 
@@ -273,6 +317,12 @@
               rgba(255, 255, 255, 0.95) 100%
             ),
             #f55;
+
+          .label {
+            .fs-body-1 {
+              color: #f55;
+            }
+          }
         }
 
         &.memory {
@@ -283,6 +333,12 @@
               rgba(255, 255, 255, 0.95) 100%
             ),
             #ffb21e;
+
+          .label {
+            .fs-body-1 {
+              color: #ffb21e;
+            }
+          }
         }
 
         &.verbal {
@@ -293,6 +349,12 @@
               rgba(255, 255, 255, 0.95) 100%
             ),
             #00bb8f;
+
+          .label {
+            .fs-body-1 {
+              color: #00bb8f;
+            }
+          }
         }
 
         &.visual {
@@ -303,16 +365,45 @@
               rgba(255, 255, 255, 0.95) 100%
             ),
             #1125d6;
+
+          .label {
+            .fs-body-1 {
+              color: #1125d6;
+            }
+          }
         }
 
         .label {
           display: flex;
           gap: 12px;
         }
+
+        .points {
+          .score,
+          .of {
+            color: var(--dark-navy);
+          }
+
+          .of {
+            opacity: 0.5;
+          }
+        }
+
+        @media screen and (max-width: 740px) {
+          background-color: red;
+          width: 315px;
+          padding: 16px;
+          padding-bottom: 18px;
+        }
+      }
+
+      @media screen and (max-width: 740px) {
+        margin-top: 24px;
       }
     }
 
     .link {
+      --button-bg: red;
       background-color: var(--dark-navy);
       text-decoration: none;
       color: white;
@@ -320,17 +411,30 @@
       margin-top: 41px;
       border-radius: 130px;
       padding: 17px;
+      transition: background-color var(--duration);
 
       @media (hover: hover) {
         &:hover {
-          background: linear-gradient(
-            180deg,
-            #75f 0%,
-            #6943ff 0.01%,
-            #2f2ce9 100%
-          );
+          background-color: var(--button-bg);
         }
       }
+
+      @media screen and (max-width: 740px) {
+        margin-top: 24px;
+        width: 315px;
+      }
     }
+
+    @media screen and (max-width: 740px) {
+      left: 0;
+      justify-content: end;
+      align-items: center;
+    }
+  }
+
+  @media screen and (max-width: 740px) {
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
   }
 }

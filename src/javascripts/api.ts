@@ -26,7 +26,7 @@ export default function get_data(): Promise<ResponseType> {
     } else if (score >= 25) {
       result.value = "bad";
       result.message =
-        "Your performance was below average. Better luck next time!";
+        "Your performance was below average. Please try harder next time!";
     } else {
       result.value = "terrible";
       result.message =
