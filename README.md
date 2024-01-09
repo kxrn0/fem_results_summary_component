@@ -42,7 +42,7 @@ Users should be able to:
 
 ### What I learned
 
-I learned how hard is to keep track of things without a framework. I should plan more throughly next time.
+I learned how hard is to keep track of things without a framework. I should plan more thoroughly next time.
 
 ## Author
 
